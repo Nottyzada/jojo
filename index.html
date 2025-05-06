@@ -1,197 +1,135 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOJÃO AGRICOLA - Peças Agrícolas e Equipamentos</title>
+    <title>Lojão Agrícola | TUDO PARA SEU AGRONEGÓCIO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Custom CSS for animations and effects */
-        .carousel-item {
-            transition: transform 0.5s ease-in-out;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #2d784e 0%, #5d9e3e 100%);
         }
         
         .product-card {
             transition: all 0.3s ease;
-            position: relative;
         }
         
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
-        .dropdown-menu {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .shipping-badge {
+            background: rgba(255, 255, 255, 0.9);
+            color: #2d784e;
+            font-weight: bold;
         }
         
-        .dropdown:hover .dropdown-menu {
-            display: block;
-            opacity: 1;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
-        }
-        
-        .mobile-menu {
-            animation: slideIn 0.3s forwards;
-        }
-        
-        .ad-banner {
-            background: linear-gradient(90deg, #f8f8f8, #e9e9e9, #f8f8f8);
-            background-size: 200% auto;
-            animation: shine 2s linear infinite;
-        }
-        
-        @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
-        }
-        
-        .nav-scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .whatsapp-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 99;
-            animation: pulse 2s infinite;
+        .animate-pulse-slow {
+            animation: pulse 3s infinite;
         }
         
         @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            0%, 100% {
+                opacity: 1;
             }
-            70% {
-                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            50% {
+                opacity: 0.8;
             }
         }
         
-        .favorite-btn {
+        .banner-slide {
+            animation: slide 15s infinite;
+        }
+        
+        @keyframes slide {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            33% {
+                transform: translateX(-100%);
+            }
+            66% {
+                transform: translateX(-200%);
+            }
+        }
+        
+        .discount-tag {
             position: absolute;
             top: 10px;
-            right: 10px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .favorite-btn:hover {
-            background: rgba(255,255,255,1);
-            transform: scale(1.1);
-        }
-        
-        .favorite-btn.active {
-            color: #ef4444;
-        }
-        
-        .footer-icon {
-            width: 40px;
-            height: 40px;
-            background: #374151;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-icon:hover {
-            background: #4b5563;
-            transform: translateY(-3px);
-        }
-        
-        .footer-link {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-link:hover {
+            left: 10px;
+            background: #e53e3e;
             color: white;
-            transform: translateX(5px);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
         }
         
-        .contact-card {
-            transition: all 0.3s ease;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        .new-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #3182ce;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
         }
     </style>
 </head>
-<body class="font-sans bg-gray-50">
-    <!-- Top Banner -->
-    <div class="bg-gradient-to-r from-green-800 to-green-700 text-white text-center py-2 px-4 text-sm font-medium">
-        <div class="container mx-auto">
-            <i class="fas fa-truck mr-2"></i> FRETE GRÁTIS PARA COMPRAS ACIMA DE R$ 250,00 - REGIÃO SUL | 
-            <i class="fas fa-credit-card ml-3 mr-2"></i> Parcele em até 12x sem juros
+<body class="bg-gray-50">
+    <!-- Top Bar -->
+    <div class="bg-green-800 text-white py-2 px-4 text-sm">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex space-x-4">
+                <div class="flex items-center">
+                    <i class="fas fa-check-circle mr-1"></i>
+                    <span>Loja oficial - Todos produtos vendidos pelo Lojão Agrícola</span>
+                </div>
+                <div class="hidden md:flex items-center">
+                    <i class="fas fa-truck mr-1"></i>
+                    <span>FRETE GRÁTIS PARA COMPRAS ACIMA DE R$ 250,00</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-green-200">Acompanhe seu pedido</a>
+                <span class="hidden md:inline">|</span>
+                <a href="#" class="hover:text-green-200">Central de atendimento</a>
+            </div>
         </div>
     </div>
-    
+
     <!-- Header -->
-    <header id="main-header" class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4">
-            <!-- Top Header -->
-            <div class="flex items-center justify-between py-4">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <button id="mobile-menu-button" class="md:hidden mr-4 text-gray-700">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                    <a href="#" class="text-2xl font-bold text-green-700">
-                        <span class="text-green-800">LOJAO</span> <span class="text-yellow-600">AGRICOLA</span>
+                    <a href="#" class="flex items-center">
+                        <img src="https://via.placeholder.com/50x50" alt="Lojão Agrícola Logo" class="h-10 mr-2">
+                        <div>
+                            <span class="text-xl font-bold text-green-700 block leading-tight">Lojão Agrícola</span>
+                            <span class="text-xs text-gray-500 block -mt-1">Tudo para seu agronegócio</span>
+                        </div>
                     </a>
                 </div>
                 
-                <!-- Navigation - Only visible when scrolled -->
-                <nav id="scrolled-nav" class="hidden md:flex items-center space-x-6 ml-8">
-                    <a href="#" class="text-gray-700 hover:text-green-700 font-medium flex items-center">
-                        <i class="fas fa-fire mr-2 text-red-500"></i> Ofertas
-                    </a>
-                    <a href="#" class="text-gray-700 hover:text-green-700 font-medium flex items-center">
-                        <i class="fas fa-star mr-2 text-yellow-500"></i> Novidades
-                    </a>
-                    <a href="#" class="text-gray-700 hover:text-green-700 font-medium flex items-center">
-                        <i class="fas fa-tractor mr-2 text-blue-500"></i> Peças Agrícolas
-                    </a>
-                    <a href="#" class="text-gray-700 hover:text-green-700 font-medium flex items-center">
-                        <i class="fas fa-microchip mr-2 text-purple-500"></i> Tecnologia
-                    </a>
-                </nav>
-                
                 <!-- Search Bar -->
-                <div class="hidden md:flex flex-1 mx-8">
-                    <div class="relative w-full max-w-xl">
-                        <input type="text" placeholder="Procurar peças agrícolas..." 
-                               class="w-full py-2 px-4 border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-green-500">
-                        <button class="absolute right-0 top-0 h-full px-4 bg-green-700 text-white rounded-r-full hover:bg-green-800 transition-colors">
+                <div class="flex-1 mx-6 hidden md:block">
+                    <div class="relative">
+                        <input type="text" placeholder="Busque por tratores, sementes, fertilizantes..." 
+                               class="w-full py-2 px-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <button class="absolute right-0 top-0 h-full px-4 bg-green-600 text-white rounded-r-full hover:bg-green-700">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -199,723 +137,887 @@
                 
                 <!-- User Actions -->
                 <div class="flex items-center space-x-4">
-                    <a href="#" class="hidden md:flex items-center text-gray-700 hover:text-green-700">
-                        <div class="text-center mr-2">
-                            <i class="fas fa-headset text-xl"></i>
-                        </div>
-                        <span class="text-sm">Fale Conosco</span>
+                    <a href="#" class="hidden md:block text-gray-700 hover:text-green-600 relative">
+                        <i class="fas fa-user text-xl"></i>
                     </a>
-                    <a href="join" class="hidden md:flex items-center text-gray-700 hover:text-green-700">
-                        <div class="text-center mr-2">
-                            <i class="fas fa-user text-xl"></i>
-                        </div>
-                        <span class="text-sm">Entrar/Cadastrar</span>
-                    </a>
-                    <a href="#" class="flex items-center text-gray-700 hover:text-green-700 relative">
-                        <i class="fas fa-shopping-cart text-xl"></i>
+                    <a href="#" class="hidden md:block text-gray-700 hover:text-green-600 relative">
+                        <i class="fas fa-heart text-xl"></i>
                         <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
                     </a>
+                    <a href="#" class="text-gray-700 hover:text-green-600 relative">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
+                    </a>
+                    <button class="md:hidden text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
                 </div>
             </div>
             
-            <!-- Main Navigation -->
-            <nav class="hidden md:block border-t border-gray-200 py-2">
-                <ul class="flex space-x-6">
-                    <li class="dropdown relative">
-                        <a href="#" class="flex items-center text-gray-700 hover:text-green-700 font-medium">
-                            <span>Ofertas</span>
-                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                        </a>
-                        <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-50 py-1">
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Ofertas da Semana</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Promoções Relâmpago</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Liquidação</a>
-                        </div>
-                    </li>
-                    <li class="dropdown relative">
-                        <a href="#" class="flex items-center text-gray-700 hover:text-green-700 font-medium">
-                            <span>Novidades</span>
-                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                        </a>
-                        <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-50 py-1">
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Lançamentos</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Tendências</a>
-                        </div>
-                    </li>
-                    <li class="dropdown relative">
-                        <a href="#" class="flex items-center text-gray-700 hover:text-green-700 font-medium">
-                            <span>Peças Agrícolas</span>
-                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                        </a>
-                        <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-50 py-1">
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Tratores</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Colheitadeiras</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Plantadeiras</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Pulverizadores</a>
-                        </div>
-                    </li>
-                    <li class="dropdown relative">
-                        <a href="#" class="flex items-center text-gray-700 hover:text-green-700 font-medium">
-                            <span>Tecnologia</span>
-                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                        </a>
-                        <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-50 py-1">
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Inovação</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Precisão</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Automação</a>
-                        </div>
-                    </li>
-                    <li class="dropdown relative">
-                        <a href="#" class="flex items-center text-gray-700 hover:text-green-700 font-medium">
-                            <span>Equipamentos</span>
-                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                        </a>
-                        <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-50 py-1">
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Máquinas</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Ferramentas</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-green-50">Acessórios</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" class="text-gray-700 hover:text-green-700 font-medium">Vestuário</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
-        <div class="mobile-menu absolute right-0 top-0 h-full w-4/5 bg-white overflow-y-auto">
-            <div class="p-4 border-b border-gray-200 flex justify-between items-center">
-                <span class="text-xl font-bold text-green-700">Menu</span>
-                <button id="close-mobile-menu" class="text-gray-700">
-                    <i class="fas fa-times text-2xl"></i>
-                </button>
-            </div>
-            <div class="p-4">
-                <div class="mb-4">
-                    <input type="text" placeholder="Procurar item..." 
+            <!-- Mobile Search -->
+            <div class="mt-3 md:hidden">
+                <div class="relative">
+                    <input type="text" placeholder="Buscar produtos..." 
                            class="w-full py-2 px-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
-                </div>
-                <ul class="space-y-2">
-                    <li>
-                        <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-green-50 rounded">Ofertas</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-green-50 rounded">Novidades</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-green-50 rounded">Peças Agrícolas</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-green-50 rounded">Tecnologia</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-green-50 rounded">Equipamentos</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-green-50 rounded">Vestuário</a>
-                    </li>
-                    <li class="border-t border-gray-200 mt-4 pt-4">
-                        <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-green-50 rounded">
-                            <i class="fas fa-headset mr-2"></i> Fale Conosco
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/join" class="block py-2 px-4 text-gray-700 hover:bg-green-50 rounded">
-                            <i class="fas fa-user mr-2"></i> Entrar/Cadastrar
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-green-50 rounded">
-                            <i class="fas fa-shopping-cart mr-2"></i> Carrinho
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-6">
-        <!-- Carousel/Banner -->
-        <div class="relative mb-8 rounded-xl overflow-hidden">
-            <div class="carousel relative h-64 md:h-96 bg-gray-200">
-                <div class="carousel-item absolute inset-0 flex items-center justify-center bg-gradient-to-r from-green-600 to-green-800">
-                    <div class="text-center px-8">
-                        <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Grande Liquidação de Verão</h2>
-                        <p class="text-lg md:text-xl text-green-100 mb-6">Até 50% de desconto em peças agrícolas selecionadas</p>
-                        <button class="bg-yellow-500 text-white px-8 py-3 rounded-full hover:bg-yellow-600 font-medium shadow-lg hover:shadow-xl transition-all">
-                            Compre Agora <i class="fas fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="carousel-item absolute inset-0 flex items-center justify-center bg-gradient-to-r from-yellow-500 to-yellow-700">
-                    <div class="text-center px-8">
-                        <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Novos Equipamentos Chegaram!</h2>
-                        <p class="text-lg md:text-xl text-yellow-100 mb-6">As melhores marcas para sua fazenda</p>
-                        <button class="bg-green-700 text-white px-8 py-3 rounded-full hover:bg-green-800 font-medium shadow-lg hover:shadow-xl transition-all">
-                            Confira <i class="fas fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="carousel-item absolute inset-0 flex items-center justify-center bg-gradient-to-r from-blue-600 to-blue-800">
-                    <div class="text-center px-8">
-                        <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Tecnologia Agrícola</h2>
-                        <p class="text-lg md:text-xl text-blue-100 mb-6">Inovações para aumentar sua produtividade</p>
-                        <button class="bg-yellow-500 text-white px-8 py-3 rounded-full hover:bg-yellow-600 font-medium shadow-lg hover:shadow-xl transition-all">
-                            Saiba Mais <i class="fas fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
+                    <button class="absolute right-0 top-0 h-full px-4 bg-green-600 text-white rounded-r-full hover:bg-green-700">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
             </div>
-            <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
-                <button class="carousel-dot w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100"></button>
-                <button class="carousel-dot w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100"></button>
-                <button class="carousel-dot w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100"></button>
-            </div>
-            <button class="carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 text-gray-800 p-3 rounded-full hover:bg-opacity-100 shadow-md">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 text-gray-800 p-3 rounded-full hover:bg-opacity-100 shadow-md">
-                <i class="fas fa-chevron-right"></i>
-            </button>
         </div>
         
         <!-- Categories -->
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                <i class="fas fa-tags text-green-600 mr-3"></i> Categorias
-            </h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                <a href="#" class="category-card bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all text-center border border-gray-100 hover:border-green-200">
-                    <div class="bg-green-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-2 shadow-inner">
-                        <i class="fas fa-tractor text-green-700 text-2xl"></i>
-                    </div>
-                    <span class="text-gray-800 font-medium">Tratores</span>
-                </a>
-                <a href="#" class="category-card bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all text-center border border-gray-100 hover:border-yellow-200">
-                    <div class="bg-yellow-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-2 shadow-inner">
-                        <i class="fas fa-harvest text-yellow-700 text-2xl"></i>
-                    </div>
-                    <span class="text-gray-800 font-medium">Colheitadeiras</span>
-                </a>
-                <a href="#" class="category-card bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all text-center border border-gray-100 hover:border-blue-200">
-                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-2 shadow-inner">
-                        <i class="fas fa-seedling text-blue-700 text-2xl"></i>
-                    </div>
-                    <span class="text-gray-800 font-medium">Plantadeiras</span>
-                </a>
-                <a href="#" class="category-card bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all text-center border border-gray-100 hover:border-red-200">
-                    <div class="bg-red-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-2 shadow-inner">
-                        <i class="fas fa-spray-can text-red-700 text-2xl"></i>
-                    </div>
-                    <span class="text-gray-800 font-medium">Pulverizadores</span>
-                </a>
-                <a href="#" class="category-card bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all text-center border border-gray-100 hover:border-purple-200">
-                    <div class="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-2 shadow-inner">
-                        <i class="fas fa-microchip text-purple-700 text-2xl"></i>
-                    </div>
-                    <span class="text-gray-800 font-medium">Tecnologia</span>
-                </a>
-                <a href="#" class="category-card bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all text-center border border-gray-100 hover:border-orange-200">
-                    <div class="bg-orange-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-2 shadow-inner">
-                        <i class="fas fa-tshirt text-orange-700 text-2xl"></i>
-                    </div>
-                    <span class="text-gray-800 font-medium">Vestuário</span>
-                </a>
+        <div class="bg-green-700 hidden md:block">
+            <div class="container mx-auto px-4">
+                <nav class="flex space-x-6">
+                    <a href="#" class="text-white hover:bg-green-600 px-3 py-2 text-sm font-medium">Início</a>
+                    <a href="#" class="text-white hover:bg-green-600 px-3 py-2 text-sm font-medium">Fertilizantes</a>
+                    <a href="#" class="text-white hover:bg-green-600 px-3 py-2 text-sm font-medium">Sementes</a>
+                    <a href="#" class="text-white hover:bg-green-600 px-3 py-2 text-sm font-medium">Defensivos</a>
+                    <a href="#" class="text-white hover:bg-green-600 px-3 py-2 text-sm font-medium">Máquinas</a>
+                    <a href="#" class="text-white hover:bg-green-600 px-3 py-2 text-sm font-medium">Irrigação</a>
+                    <a href="#" class="text-white hover:bg-green-600 px-3 py-2 text-sm font-medium">Arames</a>
+                    <a href="#" class="text-white hover:bg-green-600 px-3 py-2 text-sm font-medium">Ofertas</a>
+                </nav>
             </div>
-        </section>
-        
-        <!-- Weekly Offers -->
-        <section class="mb-12">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-800 flex items-center">
-                    <i class="fas fa-bolt text-yellow-500 mr-3"></i> Ofertas da Semana
-                </h2>
-                <a href="#" class="text-green-700 hover:text-green-800 font-medium flex items-center">
-                    Ver todas <i class="fas fa-arrow-right ml-2"></i>
-                </a>
+        </div>
+    </header>
+
+    <!-- Banner Slider -->
+    <div class="relative overflow-hidden bg-gray-100">
+        <div class="flex w-[300%] banner-slide">
+            <div class="w-full flex-shrink-0">
+                <img src="https://via.placeholder.com/1920x400?text=Banner+1+Ofertas+Especiais" alt="Banner 1" class="w-full h-auto">
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Product 1 -->
-                <div class="product-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
-                    <div class="relative">
-                        <img src="https://via.placeholder.com/300x200?text=Disco+de+Arado" alt="Disco de Arado" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
-                            -30%
+            <div class="w-full flex-shrink-0">
+                <img src="https://via.placeholder.com/1920x400?text=Banner+2+Frete+Grátis+acima+de+R$250" alt="Banner 2" class="w-full h-auto">
+            </div>
+            <div class="w-full flex-shrink-0">
+                <img src="https://via.placeholder.com/1920x400?text=Banner+3+Novos+Produtos" alt="Banner 3" class="w-full h-auto">
+            </div>
+        </div>
+        <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+            <div class="w-3 h-3 bg-white rounded-full"></div>
+            <div class="w-3 h-3 bg-white bg-opacity-50 rounded-full"></div>
+            <div class="w-3 h-3 bg-white bg-opacity-50 rounded-full"></div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-8 md:py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <div class="bg-white text-green-700 inline-block px-3 py-1 rounded-full text-sm font-semibold mb-4">
+                        <i class="fas fa-bolt mr-1"></i> OFERTAS RELÂMPAGO
+                    </div>
+                    <h1 class="text-3xl md:text-4xl font-bold mb-4">Tudo para seu agronegócio com frete grátis acima de R$ 250!</h1>
+                    <p class="text-lg mb-6">Compre direto do produtor com os melhores preços e condições.</p>
+                    <div class="bg-white text-gray-800 rounded-lg p-4 mb-6 max-w-md">
+                        <div class="flex items-center">
+                            <div class="bg-green-100 text-green-800 p-2 rounded-full mr-3">
+                                <i class="fas fa-truck text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold">Frete grátis para todo Brasil</p>
+                                <p class="text-sm">Em compras acima de R$ 250,00*</p>
+                            </div>
                         </div>
-                        <div class="favorite-btn" onclick="toggleFavorite(this)">
-                            <i class="far fa-heart"></i>
+                    </div>
+                    <button class="bg-white text-green-700 font-semibold py-3 px-8 rounded-full hover:bg-gray-100 transition shadow-lg">
+                        <i class="fas fa-shopping-cart mr-2"></i> Ver Ofertas
+                    </button>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <img src="https://via.placeholder.com/600x400" alt="Produtos agrícolas" class="rounded-lg shadow-xl w-full">
+                    <div class="absolute -bottom-4 left-0 right-0 mx-auto w-5/6">
+                        <div class="bg-white rounded-lg shadow-lg p-4 flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="bg-green-100 text-green-800 p-2 rounded-full mr-3">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Compra 100% segura</p>
+                                    <p class="text-xs text-gray-500">Garantia Lojão Agrícola</p>
+                                </div>
+                            </div>
+                            <div class="h-8 border-l border-gray-300 mx-2"></div>
+                            <div class="flex items-center">
+                                <div class="bg-blue-100 text-blue-800 p-2 rounded-full mr-3">
+                                    <i class="fas fa-box-open"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Entrega rápida</p>
+                                    <p class="text-xs text-gray-500">Em todo Brasil</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Grid -->
+    <section class="py-8 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Nossas Categorias</h2>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-green-50 transition border border-gray-100">
+                    <div class="bg-green-100 text-green-800 p-3 rounded-full inline-block mb-2">
+                        <i class="fas fa-seedling text-xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800">Sementes</h3>
+                </a>
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-green-50 transition border border-gray-100">
+                    <div class="bg-green-100 text-green-800 p-3 rounded-full inline-block mb-2">
+                        <i class="fas fa-spray-can text-xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800">Defensivos</h3>
+                </a>
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-green-50 transition border border-gray-100">
+                    <div class="bg-green-100 text-green-800 p-3 rounded-full inline-block mb-2">
+                        <i class="fas fa-tractor text-xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800">Máquinas</h3>
+                </a>
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-green-50 transition border border-gray-100">
+                    <div class="bg-green-100 text-green-800 p-3 rounded-full inline-block mb-2">
+                        <i class="fas fa-tint text-xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800">Irrigação</h3>
+                </a>
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-green-50 transition border border-gray-100">
+                    <div class="bg-green-100 text-green-800 p-3 rounded-full inline-block mb-2">
+                        <i class="fas fa-fan text-xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800">Arames</h3>
+                </a>
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-green-50 transition border border-gray-100">
+                    <div class="bg-green-100 text-green-800 p-3 rounded-full inline-block mb-2">
+                        <i class="fas fa-percentage text-xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800">Ofertas</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <div class="bg-green-700 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex flex-col md:flex-row items-center justify-center">
+                <div class="flex items-center mb-2 md:mb-0 md:mr-6">
+                    <i class="fas fa-tag text-2xl mr-2"></i>
+                    <span class="text-lg font-bold">BLACK FRIDAY AGRÍCOLA</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="bg-white text-green-700 px-3 py-1 rounded-full font-bold mr-2">-30%</div>
+                    <span>Descontos em toda loja só até domingo!</span>
+                </div>
+                <a href="#" class="ml-4 text-white font-semibold underline hover:text-green-200">Compre agora</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Highlights -->
+    <section class="py-8 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Mais Vendidos</h2>
+                <a href="#" class="text-green-600 font-medium hover:text-green-800">Ver todos</a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 product-card transition cursor-pointer">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x300" alt="Adubo NPK" class="w-full h-48 object-cover">
+                        <div class="discount-tag">-15%</div>
+                        <div class="absolute top-2 right-2 shipping-badge text-xs font-bold px-2 py-1 rounded">
+                            <i class="fas fa-truck mr-1"></i> FRETE GRÁTIS
                         </div>
                     </div>
                     <div class="p-4">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Disco de Arado 24"</h3>
+                        <h3 class="font-semibold text-gray-800 mb-1">Adubo NPK 10-10-10 Saco 50kg</h3>
                         <div class="flex items-center mb-2">
-                            <div class="flex text-yellow-400">
+                            <div class="flex text-yellow-400 text-sm">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i>
                             </div>
-                            <span class="text-gray-600 text-sm ml-1">(42)</span>
+                            <span class="text-gray-500 text-xs ml-1">(42)</span>
                         </div>
-                        <div class="flex items-center">
-                            <span class="text-lg font-bold text-green-700">R$ 289,90</span>
-                            <span class="text-sm text-gray-500 line-through ml-2">R$ 414,90</span>
+                        <div class="mb-2">
+                            <span class="text-xl font-bold text-green-700">R$ 189,90</span>
+                            <span class="text-sm text-gray-500 line-through ml-2">R$ 219,90</span>
                         </div>
-                        <button class="mt-3 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 font-medium transition-colors flex items-center justify-center">
-                            <i class="fas fa-cart-plus mr-2"></i> Adicionar
+                        <div class="text-xs text-gray-500 mb-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-weight-hanging mr-1"></i>
+                                <span>Peso: 50kg</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-2 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+                            <i class="fas fa-cart-plus mr-2"></i> Comprar
                         </button>
                     </div>
                 </div>
                 
                 <!-- Product 2 -->
-                <div class="product-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 product-card transition cursor-pointer">
                     <div class="relative">
-                        <img src="https://via.placeholder.com/300x200?text=Kit+Correntes" alt="Kit Correntes" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
-                            -15%
-                        </div>
-                        <div class="favorite-btn" onclick="toggleFavorite(this)">
-                            <i class="far fa-heart"></i>
+                        <img src="https://via.placeholder.com/300x300" alt="Pulverizador" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 shipping-badge text-xs font-bold px-2 py-1 rounded">
+                            <i class="fas fa-truck mr-1"></i> FRETE GRÁTIS
                         </div>
                     </div>
                     <div class="p-4">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Kit Correntes para Trator</h3>
+                        <h3 class="font-semibold text-gray-800 mb-1">Pulverizador Costal 20L Jacto</h3>
                         <div class="flex items-center mb-2">
-                            <div class="flex text-yellow-400">
+                            <div class="flex text-yellow-400 text-sm">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="far fa-star"></i>
                             </div>
-                            <span class="text-gray-600 text-sm ml-1">(28)</span>
+                            <span class="text-gray-500 text-xs ml-1">(18)</span>
                         </div>
-                        <div class="flex items-center">
-                            <span class="text-lg font-bold text-green-700">R$ 179,90</span>
-                            <span class="text-sm text-gray-500 line-through ml-2">R$ 211,90</span>
+                        <div class="mb-2">
+                            <span class="text-xl font-bold text-green-700">R$ 349,90</span>
                         </div>
-                        <button class="mt-3 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 font-medium transition-colors flex items-center justify-center">
-                            <i class="fas fa-cart-plus mr-2"></i> Adicionar
+                        <div class="text-xs text-gray-500 mb-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-weight-hanging mr-1"></i>
+                                <span>Peso: 5,2kg</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-2 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+                            <i class="fas fa-cart-plus mr-2"></i> Comprar
                         </button>
                     </div>
                 </div>
                 
                 <!-- Product 3 -->
-                <div class="product-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 product-card transition cursor-pointer">
                     <div class="relative">
-                        <img src="https://via.placeholder.com/300x200?text=Sensor+Umidade" alt="Sensor de Umidade" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
-                            -25%
-                        </div>
-                        <div class="favorite-btn" onclick="toggleFavorite(this)">
-                            <i class="far fa-heart"></i>
-                        </div>
+                        <img src="https://via.placeholder.com/300x300" alt="Sementes de milho" class="w-full h-48 object-cover">
+                        <div class="discount-tag">-20%</div>
                     </div>
                     <div class="p-4">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Sensor de Umidade</h3>
+                        <h3 class="font-semibold text-gray-800 mb-1">Semente de Milho AG 8088 PRO2 Saco 10kg</h3>
                         <div class="flex items-center mb-2">
-                            <div class="flex text-yellow-400">
+                            <div class="flex text-yellow-400 text-sm">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div>
-                            <span class="text-gray-600 text-sm ml-1">(56)</span>
+                            <span class="text-gray-500 text-xs ml-1">(56)</span>
                         </div>
-                        <div class="flex items-center">
-                            <span class="text-lg font-bold text-green-700">R$ 449,90</span>
-                            <span class="text-sm text-gray-500 line-through ml-2">R$ 599,90</span>
+                        <div class="mb-2">
+                            <span class="text-xl font-bold text-green-700">R$ 215,90</span>
+                            <span class="text-sm text-gray-500 line-through ml-2">R$ 269,90</span>
                         </div>
-                        <button class="mt-3 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 font-medium transition-colors flex items-center justify-center">
-                            <i class="fas fa-cart-plus mr-2"></i> Adicionar
+                        <div class="text-xs text-gray-500 mb-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-weight-hanging mr-1"></i>
+                                <span>Peso: 10kg</span>
+                            </div>
+                        </div>
+                        <div class="text-xs text-red-500 mb-2">
+                            <i class="fas fa-info-circle mr-1"></i> Frete grátis a partir de 2 unidades
+                        </div>
+                        <button class="w-full mt-2 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+                            <i class="fas fa-cart-plus mr-2"></i> Comprar
                         </button>
                     </div>
                 </div>
                 
                 <!-- Product 4 -->
-                <div class="product-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 product-card transition cursor-pointer">
                     <div class="relative">
-                        <img src="https://via.placeholder.com/300x200?text=Capacete+Segurança" alt="Capacete de Segurança" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
-                            -40%
-                        </div>
-                        <div class="favorite-btn" onclick="toggleFavorite(this)">
-                            <i class="far fa-heart"></i>
-                        </div>
+                        <img src="https://via.placeholder.com/300x300" alt="Arame farpado" class="w-full h-48 object-cover">
+                        <div class="new-tag">NOVO</div>
                     </div>
                     <div class="p-4">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Capacete de Segurança</h3>
+                        <h3 class="font-semibold text-gray-800 mb-1">Arame Farpado 15kg - 200m</h3>
                         <div class="flex items-center mb-2">
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
+                            <div class="flex text-yellow-400 text-sm">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
                             </div>
-                            <span class="text-gray-600 text-sm ml-1">(37)</span>
+                            <span class="text-gray-500 text-xs ml-1">(7)</span>
                         </div>
-                        <div class="flex items-center">
-                            <span class="text-lg font-bold text-green-700">R$ 59,90</span>
-                            <span class="text-sm text-gray-500 line-through ml-2">R$ 99,90</span>
+                        <div class="mb-2">
+                            <span class="text-xl font-bold text-green-700">R$ 89,90</span>
                         </div>
-                        <button class="mt-3 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 font-medium transition-colors flex items-center justify-center">
-                            <i class="fas fa-cart-plus mr-2"></i> Adicionar
+                        <div class="text-xs text-gray-500 mb-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-weight-hanging mr-1"></i>
+                                <span>Peso: 15kg</span>
+                            </div>
+                        </div>
+                        <div class="text-xs text-green-600 mb-2">
+                            <i class="fas fa-bolt mr-1"></i> Disponível para retirada
+                        </div>
+                        <button class="w-full mt-2 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+                            <i class="fas fa-cart-plus mr-2"></i> Comprar
                         </button>
                     </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Ad Banner -->
-        <div class="ad-banner mb-12 rounded-xl overflow-hidden shadow-md">
-            <div class="flex flex-col md:flex-row items-center bg-gradient-to-r from-yellow-50 to-green-50">
-                <div class="md:w-1/2 p-8">
-                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 flex items-center">
-                        <i class="fas fa-handshake mr-3 text-green-700"></i> Seja Nosso Parceiro
-                    </h2>
-                    <p class="text-gray-600 mb-6">Cadastre sua empresa e tenha acesso a preços especiais e condições exclusivas para revendedores.</p>
-                    <button class="bg-green-700 text-white px-8 py-3 rounded-full hover:bg-green-800 font-medium shadow-lg hover:shadow-xl transition-all flex items-center">
-                        Saiba Mais <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-                <div class="md:w-1/2">
-                    <img src="https://via.placeholder.com/600x300?text=Seja+Nosso+Parceiro" alt="Seja Nosso Parceiro" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
-        
-        <!-- Highlights -->
-        <section class="mb-12">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-800 flex items-center">
-                    <i class="fas fa-star text-yellow-500 mr-3"></i> Destaques
-                </h2>
-                <a href="#" class="text-green-700 hover:text-green-800 font-medium flex items-center">
-                    Ver todos <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Highlight 1 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
-                    <img src="https://via.placeholder.com/600x400?text=Novo+Trator" alt="Novo Trator" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Novo Trator XYZ 5000</h3>
-                        <p class="text-gray-600 mb-4">O mais avançado em tecnologia agrícola com motor turbo e sistema de navegação integrado.</p>
-                        <button class="text-green-700 hover:text-green-800 font-medium flex items-center">
-                            Saiba mais <i class="fas fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Highlight 2 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
-                    <img src="https://via.placeholder.com/600x400?text=Tecnologia+Agrícola" alt="Tecnologia Agrícola" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Tecnologia de Precisão</h3>
-                        <p class="text-gray-600 mb-4">Sensores e sistemas que aumentam sua produtividade e reduzem custos operacionais.</p>
-                        <button class="text-green-700 hover:text-green-800 font-medium flex items-center">
-                            Saiba mais <i class="fas fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Highlight 3 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
-                    <img src="https://via.placeholder.com/600x400?text=Equipamentos" alt="Equipamentos" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Linha Completa de Equipamentos</h3>
-                        <p class="text-gray-600 mb-4">Tudo o que você precisa para sua fazenda, desde plantio até colheita.</p>
-                        <button class="text-green-700 hover:text-green-800 font-medium flex items-center">
-                            Saiba mais <i class="fas fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Contact Us Section -->
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                <i class="fas fa-headset text-green-600 mr-3"></i> Fale Conosco
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Contact Card 1 -->
-                <div class="contact-card p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-phone-alt text-green-700 text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-800">Telefone</h3>
-                    </div>
-                    <p class="text-gray-600 mb-2">Atendimento de segunda a sexta, das 8h às 18h</p>
-                    <a href="tel:+555535373019" class="text-green-700 font-medium hover:text-green-800">(55) 3537-3019</a>
-                </div>
-                
-                <!-- Contact Card 2 -->
-                <div class="contact-card p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-envelope text-green-700 text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-800">E-mail</h3>
-                    </div>
-                    <p class="text-gray-600 mb-2">Respondemos em até 24 horas</p>
-                    <a href="mailto:contato@lojaoagricola.com.br" class="text-green-700 font-medium hover:text-green-800">contato@lojaoagricola.com.br</a>
-                </div>
-                
-                <!-- Contact Card 3 -->
-                <div class="contact-card p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-map-marker-alt text-green-700 text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-800">Loja Física</h3>
-                    </div>
-                    <p class="text-gray-600 mb-2">Visite nossa loja no Rio Grande do Sul</p>
-                    <p class="text-gray-800">Av. Dahne de Abreu, 2184 - São Francisco</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Newsletter -->
-        <section class="bg-gradient-to-r from-green-800 to-green-700 text-white rounded-xl p-8 mb-12 shadow-lg">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center justify-center">
-                    <i class="fas fa-envelope-open-text mr-3"></i> Receba Ofertas Exclusivas
-                </h2>
-                <p class="mb-6">Cadastre-se em nossa newsletter e receba as melhores promoções e novidades diretamente no seu e-mail.</p>
-                <div class="flex flex-col md:flex-row justify-center">
-                    <input type="email" placeholder="Seu e-mail" 
-                           class="px-6 py-3 rounded-full mb-2 md:mb-0 md:mr-2 text-gray-800 w-full md:w-96 focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                    <button class="bg-yellow-500 text-white px-8 py-3 rounded-full hover:bg-yellow-600 font-medium shadow-md hover:shadow-lg transition-all">
-                        <i class="fas fa-paper-plane mr-2"></i> Cadastrar
-                    </button>
-                </div>
-            </div>
-        </section>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-12 pb-6">
+    </section>
+
+    <!-- Banner -->
+    <div class="py-6 bg-gray-100">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-                <!-- About -->
-                <div>
-                    <h3 class="text-xl font-bold mb-4">LOJÃO AGRICOLA</h3>
-                    <p class="text-gray-400 mb-4">Adquira suas peças agrícolas on-line, a qualquer hora e de qualquer lugar!</p>
-                    <div class="flex space-x-4">
-                        <a href="https://www.facebook.com/lojaoagricolaonline/" class="text-gray-400 hover:text-white transition-colors" target="_blank">
-                            <i class="fab fa-facebook-f text-xl"></i>
-                        </a>
-                        <a href="https://www.instagram.com/lojao.agricola/" class="text-gray-400 hover:text-white transition-colors" target="_blank">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
+            <img src="https://via.placeholder.com/1200x200?text=Banner+Promocional" alt="Banner Promocional" class="w-full rounded-lg shadow-sm">
+        </div>
+    </div>
+
+    <!-- New Arrivals -->
+    <section class="py-8 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Lançamentos</h2>
+                <a href="#" class="text-green-600 font-medium hover:text-green-800">Ver todos</a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Product 5 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 product-card transition cursor-pointer">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x300" alt="Mangueira Agrícola" class="w-full h-48 object-cover">
+                        <div class="new-tag">NOVO</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-800 mb-1">Mangueira Agrícola 25mm - 100m</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 text-xs ml-1">(5)</span>
+                        </div>
+                        <div class="mb-2">
+                            <span class="text-xl font-bold text-green-700">R$ 129,90</span>
+                        </div>
+                        <div class="text-xs text-gray-500 mb-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-weight-hanging mr-1"></i>
+                                <span>Peso: 8kg</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-2 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+                            <i class="fas fa-cart-plus mr-2"></i> Comprar
+                        </button>
                     </div>
                 </div>
                 
-                <!-- Quick Links -->
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Institucional</h3>
-                    <ul>
-                        <li class="footer-link">
-                            <div class="footer-icon">
-                                <i class="fas fa-info-circle"></i>
-                            </div>
-                            <a href="#" class="text-gray-400">Quem Somos</a>
-                        </li>
-                        <li class="footer-link">
-                            <div class="footer-icon">
-                                <i class="fas fa-store"></i>
-                            </div>
-                            <a href="#" class="text-gray-400">Nossas Lojas</a>
-                        </li>
-                        <li class="footer-link">
-                            <div class="footer-icon">
-                                <i class="fas fa-briefcase"></i>
-                            </div>
-                            <a href="#" class="text-gray-400">Trabalhe Conosco</a>
-                        </li>
-                        <li class="footer-link">
-                            <div class="footer-icon">
-                                <i class="fas fa-handshake"></i>
-                            </div>
-                            <a href="#" class="text-gray-400">Seja Nosso Parceiro</a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Customer Service -->
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Atendimento</h3>
-                    <ul>
-                        <li class="footer-link">
-                            <div class="footer-icon">
-                                <i class="fas fa-headset"></i>
-                            </div>
-                            <a href="#" class="text-gray-400">Central de Atendimento</a>
-                        </li>
-                        <li class="footer-link">
-                            <div class="footer-icon">
-                                <i class="fas fa-exchange-alt"></i>
-                            </div>
-                            <a href="#" class="text-gray-400">Troca e Devoluções</a>
-                        </li>
-                        <li class="footer-link">
-                            <div class="footer-icon">
-                                <i class="fas fa-question-circle"></i>
-                            </div>
-                            <a href="#" class="text-gray-400">Dúvidas Frequentes</a>
-                        </li>
-                        <li class="footer-link">
-                            <div class="footer-icon">
-                                <i class="fas fa-file-alt"></i>
-                            </div>
-                            <a href="#" class="text-gray-400">Termos e Condições</a>
-                        </li>
-                        <li class="footer-link">
-                            <div class="footer-icon">
-                                <i class="fas fa-lock"></i>
-                            </div>
-                            <a href="#" class="text-gray-400">Política de Privacidade</a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Payment Methods -->
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Formas de Pagamento</h3>
-                    <div class="grid grid-cols-3 gap-2 mb-4">
-                        <div class="bg-gray-800 p-2 rounded flex items-center justify-center hover:bg-gray-700 transition-colors">
-                            <i class="fab fa-cc-visa text-2xl"></i>
-                        </div>
-                        <div class="bg-gray-800 p-2 rounded flex items-center justify-center hover:bg-gray-700 transition-colors">
-                            <i class="fab fa-cc-mastercard text-2xl"></i>
-                        </div>
-                        <div class="bg-gray-800 p-2 rounded flex items-center justify-center hover:bg-gray-700 transition-colors">
-                            <i class="fab fa-cc-amex text-2xl"></i>
-                        </div>
-                        <div class="bg-gray-800 p-2 rounded flex items-center justify-center hover:bg-gray-700 transition-colors">
-                            <i class="fab fa-cc-paypal text-2xl"></i>
-                        </div>
-                        <div class="bg-gray-800 p-2 rounded flex items-center justify-center hover:bg-gray-700 transition-colors">
-                            <i class="fas fa-barcode text-2xl"></i>
-                        </div>
-                        <div class="bg-gray-800 p-2 rounded flex items-center justify-center hover:bg-gray-700 transition-colors">
-                            <i class="fas fa-money-bill-wave text-2xl"></i>
+                <!-- Product 6 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 product-card transition cursor-pointer">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x300" alt="Fertilizante Orgânico" class="w-full h-48 object-cover">
+                        <div class="new-tag">NOVO</div>
+                        <div class="absolute top-2 right-2 shipping-badge text-xs font-bold px-2 py-1 rounded">
+                            <i class="fas fa-truck mr-1"></i> FRETE GRÁTIS
                         </div>
                     </div>
-                    <h3 class="text-lg font-bold mb-2 mt-4">Endereço</h3>
-                    <p class="text-gray-400">
-                        <i class="fas fa-map-marker-alt mr-2"></i> Av. Dahne de Abreu, 2184<br>
-                        <span class="ml-6">Horizontina - RS, 98920-000</span>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-800 mb-1">Fertilizante Orgânico 5kg</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 text-xs ml-1">(23)</span>
+                        </div>
+                        <div class="mb-2">
+                            <span class="text-xl font-bold text-green-700">R$ 79,90</span>
+                        </div>
+                        <div class="text-xs text-gray-500 mb-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-weight-hanging mr-1"></i>
+                                <span>Peso: 5kg</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-2 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+                            <i class="fas fa-cart-plus mr-2"></i> Comprar
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 product-card transition cursor-pointer">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x300" alt="Kit Irrigação" class="w-full h-48 object-cover">
+                        <div class="new-tag">NOVO</div>
+                        <div class="discount-tag">-10%</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-800 mb-1">Kit Irrigação Completo 500m²</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 text-xs ml-1">(12)</span>
+                        </div>
+                        <div class="mb-2">
+                            <span class="text-xl font-bold text-green-700">R$ 1.249,90</span>
+                            <span class="text-sm text-gray-500 line-through ml-2">R$ 1.389,90</span>
+                        </div>
+                        <div class="text-xs text-gray-500 mb-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-weight-hanging mr-1"></i>
+                                <span>Peso: 15kg</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-2 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+                            <i class="fas fa-cart-plus mr-2"></i> Comprar
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 8 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 product-card transition cursor-pointer">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x300" alt="Enxada Agrícola" class="w-full h-48 object-cover">
+                        <div class="new-tag">NOVO</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-800 mb-1">Enxada Agrícola Profissional</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 text-xs ml-1">(8)</span>
+                        </div>
+                        <div class="mb-2">
+                            <span class="text-xl font-bold text-green-700">R$ 59,90</span>
+                        </div>
+                        <div class="text-xs text-gray-500 mb-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-weight-hanging mr-1"></i>
+                                <span>Peso: 2,5kg</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-2 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+                            <i class="fas fa-cart-plus mr-2"></i> Comprar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shipping Calculator -->
+    <section class="py-8 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">Calcule seu frete</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">CEP de destino</label>
+                        <div class="flex">
+                            <input type="text" placeholder="00000-000" class="flex-1 py-2 px-3 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                            <button class="bg-green-600 text-white px-4 rounded-r-lg hover:bg-green-700">
+                                Calcular
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Serviço</label>
+                        <select class="w-full py-2 px-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                            <option>Selecione o serviço</option>
+                            <option>PAC - Correios</option>
+                            <option>SEDEX - Correios</option>
+                            <option>Transportadora</option>
+                            <option>Retirada no local</option>
+                        </select>
+                    </div>
+                    <div class="bg-green-50 p-3 rounded-lg border border-green-100 flex items-center">
+                        <i class="fas fa-truck text-green-600 text-xl mr-3"></i>
+                        <div>
+                            <p class="text-sm text-gray-600">Frete para 00000-000</p>
+                            <p class="font-bold text-green-700">R$ 45,90 (5-7 dias úteis)</p>
+                            <p class="text-xs text-green-600">Adicione mais R$ 160,10 para frete grátis</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="text-sm text-gray-600">
+                        <i class="fas fa-info-circle text-green-600 mr-1"></i> 
+                        Frete grátis para compras acima de R$ 250,00 para todo Brasil.
                     </p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-8 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">O que nossos clientes dizem</h2>
             
-            <!-- Copyright -->
-            <div class="border-t border-gray-800 pt-6 text-center text-gray-400">
-                <p>&copy; 2025 - Todos direitos reservados</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-sm mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">Há 2 semanas</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Comprei sementes e adubo e chegou antes do prazo. Produtos de excelente qualidade e o frete grátis foi ótimo!"</p>
+                    <div class="flex items-center">
+                        <img src="https://via.placeholder.com/40x40" alt="Cliente" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium text-gray-800">João Silva</p>
+                            <p class="text-xs text-gray-500">Produtor rural - MG</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-sm mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">Há 1 mês</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Atendimento excelente e produtos conforme descrito. Já fiz várias compras e sempre atendem minhas expectativas."</p>
+                    <div class="flex items-center">
+                        <img src="https://via.placeholder.com/40x40" alt="Cliente" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium text-gray-800">Maria Oliveira</p>
+                            <p class="text-xs text-gray-500">Fazenda Santa Rita - SP</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-sm mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">Há 3 dias</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Ótimo custo-benefício. Comprei o kit de irrigação e estou muito satisfeito. Recomendo!"</p>
+                    <div class="flex items-center">
+                        <img src="https://via.placeholder.com/40x40" alt="Cliente" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium text-gray-800">Carlos Souza</p>
+                            <p class="text-xs text-gray-500">Sítio Florada - PR</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="py-8 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Formas de Pagamento</h2>
+            
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex flex-wrap items-center justify-center gap-6 mb-6">
+                    <div class="flex flex-col items-center">
+                        <div class="bg-blue-50 p-4 rounded-full mb-2">
+                            <i class="fab fa-cc-visa text-blue-700 text-3xl"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">Cartão de crédito</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="bg-green-50 p-4 rounded-full mb-2">
+                            <i class="fas fa-barcode text-green-700 text-3xl"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">Boleto</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="bg-purple-50 p-4 rounded-full mb-2">
+                            <i class="fab fa-pix text-purple-700 text-3xl"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">PIX</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="bg-yellow-50 p-4 rounded-full mb-2">
+                            <i class="fas fa-money-bill-wave text-yellow-700 text-3xl"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">À vista</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="bg-gray-100 p-4 rounded-full mb-2">
+                            <i class="fas fa-university text-gray-700 text-3xl"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">Transferência</span>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-sm text-gray-600 mb-2">
+                        <i class="fas fa-credit-card text-green-600 mr-1"></i>
+                        Parcele em até 12x no cartão com juros de 2,99% a.m.
+                    </p>
+                    <p class="text-sm text-gray-600">
+                        <i class="fas fa-lock text-green-600 mr-1"></i>
+                        Ambiente 100% seguro - Todos os dados criptografados
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="py-8 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/3 bg-green-700 text-white p-8 flex flex-col justify-center">
+                        <h2 class="text-2xl font-bold mb-4">Lojão Agrícola</h2>
+                        <p class="mb-4">Há mais de 15 anos fornecendo produtos de qualidade para o agronegócio brasileiro.</p>
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            <span>Loja própria - Todos produtos vendidos por nós</span>
+                        </div>
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            <span>Frete grátis acima de R$ 250,00</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            <span>Atendimento especializado</span>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 p-8">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Nossa Estrutura</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-warehouse text-green-600 mr-2"></i> Armazém Central
+                                </h4>
+                                <p class="text-gray-600 text-sm">10.000m² de área construída em São Paulo/SP com estoque permanente de mais de 5.000 itens.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-truck text-green-600 mr-2"></i> Logística
+                                </h4>
+                                <p class="text-gray-600 text-sm">Entregas para todo Brasil com as melhores transportadoras e prazos competitivos.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-certificate text-green-600 mr-2"></i> Qualidade
+                                </h4>
+                                <p class="text-gray-600 text-sm">Todos produtos com garantia e procedência verificada. Fornecedores certificados.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                    <i class="fas fa-headset text-green-600 mr-2"></i> Atendimento
+                                </h4>
+                                <p class="text-gray-600 text-sm">Equipe especializada para tirar dúvidas técnicas sobre produtos agrícolas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-8 bg-green-700 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-2">Receba nossas ofertas por e-mail</h2>
+            <p class="mb-6">Cadastre-se e receba promoções exclusivas e novidades do agronegócio</p>
+            <div class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Seu melhor e-mail" class="flex-1 py-3 px-4 rounded-l-lg text-gray-800 focus:outline-none">
+                <button class="bg-green-900 text-white px-6 rounded-r-lg hover:bg-green-800 font-medium">
+                    Cadastrar
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Column 1 -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4 flex items-center">
+                        <img src="https://via.placeholder.com/30x30" alt="Logo" class="mr-2">
+                        Lojão Agrícola
+                    </h3>
+                    <p class="text-gray-300 mb-4">Tudo para seu agronegócio com a qualidade e confiança de quem está há mais de 15 anos no mercado.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Institucional</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Quem somos</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Nossas lojas</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Trabalhe conosco</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Política de privacidade</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Termos de uso</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Atendimento</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-green-400 mr-2"></i>
+                            <span>(11) 4004-4004</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-green-400 mr-2"></i>
+                            <span>contato@lojaoagricola.com.br</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-green-400 mr-2"></i>
+                            <span>Av. das Nações Unidas, 12.345 - São Paulo/SP</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock text-green-400 mr-2"></i>
+                            <span>Seg-Sex: 8h às 18h | Sáb: 8h às 12h</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Ajuda</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Dúvidas frequentes</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Como comprar</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Formas de pagamento</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Entregas e prazos</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Trocas e devoluções</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0 text-sm text-gray-400">
+                        &copy; 2023 Lojão Agrícola. Todos os direitos reservados.
+                    </div>
+                    
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <img src="https://via.placeholder.com/50x30?text=Visa" alt="Visa" class="h-8">
+                        <img src="https://via.placeholder.com/50x30?text=Mastercard" alt="Mastercard" class="h-8">
+                        <img src="https://via.placeholder.com/50x30?text=Elo" alt="Elo" class="h-8">
+                        <img src="https://via.placeholder.com/50x30?text=Amex" alt="Amex" class="h-8">
+                        <img src="https://via.placeholder.com/50x30?text=Boleto" alt="Boleto" class="h-8">
+                        <img src="https://via.placeholder.com/50x30?text=Pix" alt="Pix" class="h-8">
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
-    
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/555535373019" class="whatsapp-button bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-xl hover:bg-green-600 transition-colors" target="_blank">
-        <i class="fab fa-whatsapp text-2xl"></i>
-    </a>
-    
+
+    <!-- Floating WhatsApp -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="#" class="bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-700 animate-pulse-slow">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMobileMenu = document.getElementById('close-mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
-        });
-        
-        closeMobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-        });
-        
-        // Carousel Functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-item');
-        const dots = document.querySelectorAll('.carousel-dot');
-        const prevButton = document.querySelector('.carousel-prev');
-        const nextButton = document.querySelector('.carousel-next');
-        
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.style.display = i === index ? 'flex' : 'none';
-            });
-            
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('bg-opacity-100', i === index);
-                dot.classList.toggle('bg-opacity-50', i !== index);
-            });
-            
-            currentSlide = index;
-        }
-        
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-        
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
-        
-        // Initialize carousel
-        showSlide(0);
-        
-        // Event listeners
-        nextButton.addEventListener('click', nextSlide);
-        prevButton.addEventListener('click', prevSlide);
-        
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => showSlide(i));
-        });
-        
-        // Auto-advance carousel
-        setInterval(nextSlide, 5000);
-        
-        // Toggle favorite button
-        function toggleFavorite(btn) {
-            const icon = btn.querySelector('i');
-            btn.classList.toggle('active');
-            
-            if (btn.classList.contains('active')) {
-                icon.classList.remove('far');
-                icon.classList.add('fas');
-            } else {
-                icon.classList.remove('fas');
-                icon.classList.add('far');
-            }
-        }
-        
-        // Scroll effect for navigation
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('main-header');
-            const scrolledNav = document.getElementById('scrolled-nav');
-            
-            if (window.scrollY > 100) {
-                header.classList.add('nav-scrolled');
-                scrolledNav.classList.remove('hidden');
-            } else {
-                header.classList.remove('nav-scrolled');
-                scrolledNav.classList.add('hidden');
+        // Simple cart functionality
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Comprar')) {
+                button.addEventListener('click', function() {
+                    const productName = this.closest('.product-card').querySelector('h3').textContent;
+                    const productPrice = this.closest('.product-card').querySelector('.text-green-700').textContent;
+                    
+                    alert(`Produto adicionado ao carrinho:\n${productName}\n${productPrice}`);
+                    
+                    // Update cart count
+                    const cartCount = document.querySelector('.fa-shopping-cart').nextElementSibling;
+                    let count = parseInt(cartCount.textContent);
+                    cartCount.textContent = count + 1;
+                });
             }
         });
+        
+        // Shipping calculator mock
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent === 'Calcular') {
+                button.addEventListener('click', function() {
+                    const cepInput = this.previousElementSibling;
+                    if (cepInput.value.length === 8 || cepInput.value.length === 9) {
+                        alert(`Frete calculado para CEP ${cepInput.value}\nValor: R$ 45,90 (5-7 dias úteis)`);
+                    } else {
+                        alert('Por favor, insira um CEP válido');
+                    }
+                });
+            }
+        });
+        
+        // Newsletter form
+        const newsletterForm = document.querySelector('section.bg-green-700 button');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('click', function() {
+                const emailInput = this.previousElementSibling;
+                if (emailInput.value.includes('@')) {
+                    alert(`Obrigado por se cadastrar!\nVocê receberá nossas ofertas no e-mail: ${emailInput.value}`);
+                    emailInput.value = '';
+                } else {
+                    alert('Por favor, insira um e-mail válido');
+                }
+            });
+        }
     </script>
 </body>
 </html>
